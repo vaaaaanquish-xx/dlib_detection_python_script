@@ -27,14 +27,20 @@ faces_folder = sys.argv[1]
 
 # simple_object_detectorの訓練用オプションを取ってくる
 options = dlib.simple_object_detector_training_options()
-# 左右対称にあるならtrueで訓練
+# 左右対照に学習データを増やすならtrueで訓練(メモリを使う)
 options.add_left_right_image_flips = True
 # SVMを使ってるのでC値を設定する必要がある
 options.C = 5
 # スレッド数指定
-options.num_threads = 4
-# 途中経過出すか出さないか
+options.num_threads = 16
+# 学習途中の出力をするかどうか
 options.be_verbose = True
+# 学習係数
+options.epsilon = 0.001
+# サンプルを増やす最大数(大きすぎるとメモリを使う)
+options.upsample_limit = 8
+# 矩形検出の最小窓サイズ(80*80=6400となる)
+options.detection_window_size = 6400
 
 # ファルダパスとxmlパスを設定
 # xmlを作るにはdlib本体のtools/imglabディレクトリ
