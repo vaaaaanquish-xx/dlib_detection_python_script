@@ -35,7 +35,7 @@ options.C = 5
 options.num_threads = 16
 # 学習途中の出力をするかどうか
 options.be_verbose = True
-# 学習係数
+# 停止許容範囲
 options.epsilon = 0.001
 # サンプルを増やす最大数(大きすぎるとメモリを使う)
 options.upsample_limit = 8

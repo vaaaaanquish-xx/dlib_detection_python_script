@@ -7,7 +7,7 @@ import os
 import os.path
 import shutil
 import sys
-from face_detector_dlib import facedetector_dlib
+from detector_dlib import facedetector_dlib
 
 # --------------------------------------------
 # param

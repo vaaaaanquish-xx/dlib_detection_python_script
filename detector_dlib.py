@@ -6,17 +6,24 @@ import dlib
 
 # このスクリプトを単体で実行する場合はここにファイルパスを指定
 sample_img_path = 'sample.jpg'
+# svmファイルの指定, 自作svmを使う時はここ修正と15行目, 23行目くらいのコメントを使ってよしなに
+svm = 'detector.svm'
 
 def facedetector_dlib(img, image_path):
     try:
         # dlib標準の顔検出 frontal_face_detector クラス
+        # detector = dlib.simple_object_detector(svm)
         detector = dlib.get_frontal_face_detector()
+
         # RGB変換 (opencv形式からskimage形式に変換)
         # 公式のデモだとskimage使ってるのでそちらが良いかも
         img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
         # frontal_face_detectorクラスは矩形, スコア, サブ検出器の結果を返す
         # 引数のupsample_numを設定すると画像の見る枚数が増えるため精度が向上するがその分探索時間とメモリを要する
+        # dets = detector(img_rgb, 0)
         dets, scores, idx = detector.run(img_rgb, 0)
+
         # 矩形の色
         color = (0, 0, 255)
         s = ''
